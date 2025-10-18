@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Онлайн библиотека - Список книг</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Онлайн библиотека</h1>
+    <a class="btn" th:href="@{/books/new}">Добавить книгу</a>
+    <div th:if="${success}" class="success" th:text="${success}"></div>
+    <table>
+        <thead>
+            <tr><th>ID</th><th>Название</th><th>Автор</th><th>Действия</th></tr>
+        </thead>
+        <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.id}">1</td>
+                <td th:text="${book.title}">Title</td>
+                <td th:text="${book.author}">Author</td>
+                <td>
+                    <a th:href="@{'/books/' + ${book.id}}">Просмотр</a> |
+                    <a th:href="@{'/books/' + ${book.id} + '/edit'}">Редактировать</a> |
+                    <form th:action="@{'/books/' + ${book.id} + '/delete'}" method="post" style="display:inline">
+                        <button type="submit" onclick="return confirm('Удалить?')">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
