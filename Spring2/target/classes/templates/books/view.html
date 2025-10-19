@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Просмотр: ' + ${book.title}">Просмотр</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${book.title}">Title</h1>
+    <p><strong>Автор:</strong> <span th:text="${book.author}">Author</span></p>
+    <p><strong>Описание:</strong></p>
+    <p th:text="${book.description}">Description</p>
+    <a th:href="@{/books}">Назад к списку</a>
+</div>
+</body>
+</html>
